@@ -1,7 +1,7 @@
 # Личный проект «YetiCave»
 
 * Студент: [Орест Ярич](https://up.htmlacademy.ru/php/6/user/603909).
-* Наставник: `Неизвестно`.
+* Наставник: [Алексей Пасунько](https://up.htmlacademy.ru/php/6/user/702351).
 
 ---
 
