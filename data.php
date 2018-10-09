@@ -21,7 +21,7 @@ $lots = [
 'url' => 'img/lot-2.jpg'
 ],
 [
-'name' => 'Крепления Union Contact Pro 2015 года размер L/XL <script>',
+'name' => 'Крепления Union Contact Pro 2015 года размер L/XL',
 'category' => 'Крепления',
 'price' => 8000,
 'url' => 'img/lot-3.jpg'
