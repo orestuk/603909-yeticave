@@ -19,7 +19,8 @@ CREATE TABLE lots (
     bid_step INT DEFAULT 0,
     
     owner_id INT NOT NULL,
-    winner_id INT
+    winner_id INT,
+    category_id INT NOT NULL
 );
 
 CREATE TABLE bids (
@@ -43,13 +44,15 @@ CREATE TABLE users (
 
 CREATE UNIQUE INDEX email ON users(email);
 
-CREATE INDEX lot_name ON lots(lot);
+CREATE INDEX lot_name ON lots(name);
 
 CREATE INDEX lot_description ON lots(description);
 
 CREATE INDEX lot_owner_id ON lots(owner_id);
 
 CREATE INDEX lot_winner_id ON lots(winner_id);
+
+CREATE INDEX lot_category_id ON lots(category_id);
 
 CREATE INDEX bid_owner_id ON bids(owner_id);
 
