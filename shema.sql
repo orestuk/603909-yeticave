@@ -10,14 +10,14 @@ CREATE TABLE  categories (
 CREATE TABLE lots (
 	id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
     name  VARCHAR( 50) NOT NULL,
-    date_created TIMESTAMP NOT NULL,
+    date_created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     description VARCHAR(255) NOT NULL,
     image_url VARCHAR(100) NOT NULL,
     price INT NOT NULL,
     date_completion TIMESTAMP NOT NULL,
     
     bid_step INT DEFAULT 0,
-    
+
     owner_id INT NOT NULL,
     winner_id INT,
     category_id INT NOT NULL
@@ -25,9 +25,9 @@ CREATE TABLE lots (
 
 CREATE TABLE bids (
 	id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-	date_created TIMESTAMP NOT NULL,
+	date_created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     amount INT NOT NULL,
-    
+
 	owner_id INT NOT NULL,
     lot_id INT NOT NULL
 );
@@ -35,7 +35,7 @@ CREATE TABLE bids (
 CREATE TABLE users (
 	id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
     name  VARCHAR( 50) NOT NULL,
-    date_created TIMESTAMP NOT NULL,
+    date_created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     email VARCHAR(60),
     password VARCHAR(40),
     avatar_url VARCHAR(100),
@@ -57,3 +57,5 @@ CREATE INDEX lot_category_id ON lots(category_id);
 CREATE INDEX bid_owner_id ON bids(owner_id);
 
 CREATE INDEX bid_lot_id ON bids(lot_id);
+
+
