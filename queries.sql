@@ -76,12 +76,14 @@ SELECT * FROM categories;
 
 -- Select new opened lots
 
-SELECT lt.name, lt.price, lt.image_url, ct.name, MAX(bd.amount) AS last_bid_amount, COUNT(bd.id) AS bid_number
+SELECT lt.id, lt.name, lt.price, lt.image_url, ct.name, MAX(bd.amount) AS last_bid_amount, COUNT(bd.id) AS bid_number
 FROM lots AS lt
 	INNER JOIN categories AS ct ON ct.id = lt.category_id
     INNER JOIN bids AS bd ON bd.lot_id = lt.id
 WHERE lt.date_completion > current_date()
-GROUP BY lt.name, lt.price, lt.image_url, ct.name;
+GROUP BY lt.id, lt.name, lt.price, lt.image_url, ct.name
+ORDER BY  lt.id DESC
+LIMIT 10;
 
 -- Select lot by id
 
