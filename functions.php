@@ -39,5 +39,5 @@ function get_lot_time(){
     date_default_timezone_set("Europe/Moscow");
     $midnight = new DateTime('tomorrow');
     $current = new DateTime();
-    return $midnight->diff($current)->format('%H:%i');
+    return $midnight->diff($current)->format('%H:%I');
 }
