@@ -34,12 +34,12 @@ CREATE TABLE bids (
 
 CREATE TABLE users (
 	id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    name  VARCHAR( 50) NOT NULL,
-    date_created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    email VARCHAR(60),
-    password VARCHAR(40),
-    avatar_url VARCHAR(100),
-    contacts VARCHAR(255)
+  name  VARCHAR(60) NOT NULL,
+  date_created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  email VARCHAR(60),
+  password VARCHAR(255),
+  avatar_url VARCHAR(100),
+  contacts VARCHAR(255)
 );
 
 CREATE UNIQUE INDEX email ON users(email);

@@ -88,6 +88,14 @@ class Services {
         return $this->get_data($sql);
     }
 
+    public function get_user_by_email($email)
+    {
+        $email = mysqli_real_escape_string($this->link, $email);
+        $sql = "SELECT id FROM users WHERE email = '$email'";
+
+        return $this->get_data($sql);
+    }
+
     public function get_categories()
     {
         $sql = 'SELECT * FROM categories;';
@@ -100,6 +108,21 @@ class Services {
         $sql ='INSERT INTO lots(name, description, image_url, price, date_completion, bid_step, owner_id, winner_id, category_id)
 	            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);';
 	    $stmt = $this->db_get_prepare_stmt($sql, [$lot['lot-name'], $lot['message'], $lot['lot-image'], $lot['lot-rate'], $lot['lot-date'], $lot['lot-step'], 1, 0, $lot['category']]);
+        $res = mysqli_stmt_execute($stmt);
+        if (!$res) {
+            redirect_to_error(mysqli_error($this->link));
+        }
+        return mysqli_insert_id($this->link);
+    }
+
+    public function add_user($user)
+    {
+        if (!isset( $user['avatar']))
+        {
+            $user['avatar'] = '';
+        }
+        $sql = 'INSERT INTO users (name, email, password, avatar_url, contacts) VALUES (?, ?, ?, ?, ?);';
+        $stmt = $this->db_get_prepare_stmt($sql, [$user['name'], $user['email'], $user['password'], $user['avatar'], $user['message']]);
         $res = mysqli_stmt_execute($stmt);
         if (!$res) {
             redirect_to_error(mysqli_error($this->link));

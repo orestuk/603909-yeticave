@@ -42,9 +42,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $file_type = finfo_file($finfo, $tmp_name);
         if ($file_type !== "image/jpeg") {
             $errors['lot-image'] = 'Загрузите картинку в формате JPG';
-        } else {
-            move_uploaded_file($tmp_name, 'img/' . $path);
-            $lot['lot-image'] = $path;
         }
 
     } else {
@@ -59,6 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $lot_id = $services->add_lot($lot);
         if ($lot_id) {
             header("Location: lot.php?id=" . $lot_id);
+            exit();
         }
         $page_content = include_template('lot.php', ['lot' => $lot]);
     }
