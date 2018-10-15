@@ -41,3 +41,14 @@ function get_lot_time(){
     $current = new DateTime();
     return $midnight->diff($current)->format('%H:%I');
 }
+
+function redirect_to_error($error){
+    session_start();
+    $_SESSION['error'] = $error;
+    header('location: error.php' );
+}
+
+function redirect_to_error_404($error){
+    http_response_code(404);
+    redirect_to_error($error);
+}
