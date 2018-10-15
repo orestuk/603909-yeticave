@@ -2,8 +2,8 @@
 
 class Services {
 
-    var $link;
-    var $is_auth;
+    private $link;
+    private $is_auth;
 
     function __construct() {
 

@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $errors['lot-image'] = 'Загрузите картинку в формате JPG';
         } else {
             move_uploaded_file($tmp_name, 'img/' . $path);
-            $lot[''] = $path;
+            $lot['image_url'] = $path;
         }
 
     } else {
