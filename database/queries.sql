@@ -45,17 +45,17 @@ INSERT INTO users (name, email, password, avatar_url, contacts)
 INSERT INTO lots(name, description, image_url, price,
 						date_completion, bid_step, owner_id, winner_id, category_id)
 	VALUES
-		('2014 Rossignol District Snowboard', 'Lorem ipsum dolor sit amet, consectetur adipiscing', 'img/lot-1.jpg', 10999,
+		('2014 Rossignol District Snowboard', 'Lorem ipsum dolor sit amet, consectetur adipiscing', 'lot-1.jpg', 10999,
 			TIMESTAMP('2018-10-25'), 100, 1, 2, @boards_category_id),
-		('DC Ply Mens 2016/2017 Snowboard', 'Lorem ipsum dolor sit amet, consectetur adipiscing', 'img/lot-2.jpg', 159999,
+		('DC Ply Mens 2016/2017 Snowboard', 'Lorem ipsum dolor sit amet, consectetur adipiscing', 'lot-2.jpg', 159999,
 			TIMESTAMP('2018-10-26'), 1000, 2, NULL, @boards_category_id),
-		('Крепления Union Contact Pro 2015 года размер L/XL', 'Lorem ipsum dolor sit amet, consectetur adipiscing', 'img/lot-3.jpg', 8000,
+		('Крепления Union Contact Pro 2015 года размер L/XL', 'Lorem ipsum dolor sit amet, consectetur adipiscing', 'lot-3.jpg', 8000,
 			TIMESTAMP('2018-10-27'), 100, 2, NULL, @mounts_category_id),
-        ('Ботинки для сноуборда DC Mutiny Charocal.', 'Lorem ipsum dolor sit amet, consectetur adipiscing', 'img/lot-4.jpg', 10999,
+        ('Ботинки для сноуборда DC Mutiny Charocal.', 'Lorem ipsum dolor sit amet, consectetur adipiscing', 'lot-4.jpg', 10999,
 			TIMESTAMP('2018-11-05'), 100, 1, NULL, @boots_category_id),
-		('Куртка для сноуборда DC Mutiny Charoca', 'Lorem ipsum dolor sit amet, consectetur adipiscing', 'img/lot-5.jpg', 7500,
+		('Куртка для сноуборда DC Mutiny Charoca', 'Lorem ipsum dolor sit amet, consectetur adipiscing', 'lot-5.jpg', 7500,
 			TIMESTAMP('2018-11-30'),  20, 2, NULL, @clothes_category_id),
-        ('Маска Oakley Canopy', 'Lorem ipsum dolor sit amet, consectetur adipiscing', 'img/lot-6.jpg', 5400,
+        ('Маска Oakley Canopy', 'Lorem ipsum dolor sit amet, consectetur adipiscing', 'lot-6.jpg', 5400,
 			TIMESTAMP('2018-12-05'), 10, 2, NULL, @different_category_id);
 
 -- Create bids
