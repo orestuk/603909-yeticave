@@ -3,13 +3,10 @@
 class Services {
 
     private $link;
-    public $is_auth;
 
     public function __construct() {
 
         $db = require_once 'config/db.php';
-
-        $this->is_auth = rand(0, 1);
 
         $this->link = mysqli_connect($db['host'], $db['user'], $db['password'], $db['database']);
         mysqli_set_charset($this->link, "utf8");
@@ -91,7 +88,7 @@ class Services {
     public function get_user_by_email($email)
     {
         $email = mysqli_real_escape_string($this->link, $email);
-        $sql = "SELECT id FROM users WHERE email = '$email'";
+        $sql = "SELECT * FROM users WHERE email = '$email'";
 
         return $this->get_data($sql);
     }

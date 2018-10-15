@@ -3,6 +3,8 @@
 require_once('functions.php');
 require_once('services/services.php');
 
+session_start();
+
 $services = new Services();
 $lots = $services->get_lots();
 $categories = $services->get_categories();
@@ -16,7 +18,7 @@ $layout_content = include_template('layout.php', [
     'content' => $page_content,
     'categories' => $categories,
     'title' => 'Главная страница',
-    'is_auth' => $services->is_auth
+    'username' => isset($_SESSION["user"]) ? $_SESSION["user"]['name'] : ''
 ]);
 
 print($layout_content);

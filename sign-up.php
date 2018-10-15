@@ -77,7 +77,7 @@ $layout_content = include_template('layout.php', [
     'content' => $page_content,
     'categories' => $categories,
     'title' => 'Главная страница',
-    'is_auth' => $services->is_auth
+    'username' => isset($_SESSION["user"]) ? $_SESSION["user"]['name'] : ''
 ]);
 
 print($layout_content);

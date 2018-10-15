@@ -3,6 +3,8 @@
 require_once('functions.php');
 require_once('services/services.php');
 
+session_start();
+
 $id = '';
 
 if (isset($_GET['id'])) {
@@ -22,14 +24,15 @@ if (!count($lots))
 
 $page_content = include_template('lot.php', [
     'categories' => $categories,
-    'lot' => $lots[0]
+    'lot' => $lots[0],
+    'username' => isset($_SESSION["user"]) ? $_SESSION["user"]['name'] : ''
 ]);
 
 $layout_content = include_template('layout.php', [
     'content' => $page_content,
     'categories' => $categories,
     'title' => 'Главная страница',
-    'is_auth' => $services->is_auth
+    'username' => isset($_SESSION["user"]) ? $_SESSION["user"]['name'] : ''
 ]);
 
 print($layout_content);

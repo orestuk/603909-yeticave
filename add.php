@@ -3,6 +3,15 @@
 require_once('functions.php');
 require_once('services/services.php');
 
+session_start();
+
+if (!isset($_SESSION["user"]))
+{
+    http_response_code(404);
+    header("Location: /index.php");
+    exit();
+}
+
 $services = new Services();
 $categories = $services->get_categories();
 
@@ -71,7 +80,7 @@ $layout_content = include_template('layout.php', [
     'content' => $page_content,
     'categories' => $categories,
     'title' => 'Главная страница',
-    'is_auth' => $services->is_auth
+    'username' => isset($_SESSION["user"]) ? $_SESSION["user"]['name'] : ''
 ]);
 
 print($layout_content);
