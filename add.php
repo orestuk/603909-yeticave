@@ -12,17 +12,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $required = ['lot-name', 'category', 'message', 'lot-rate', 'lot-step', 'lot-date'];
     $is_int = ['lot-rate', 'lot-step'];
     $dict = ['lot-name' => 'Наименование',
-        'category' => 'Категория',
-        'message' => 'Описание',
-        'lot-rate' => 'Начальная цена',
-        'lot-step' => 'Шаг ставки',
-        'lot-date' => 'Дата окончания торгов'
+        'category' => 'категорию',
+        'message' => 'описание',
+        'lot-rate' => 'начальная цену',
+        'lot-step' => 'шаг ставки',
+        'lot-date' => 'дату окончания торгов'
     ];
     $errors = [];
 
     foreach ($required as $key) {
         if (empty($_POST[$key])) {
-            $errors[$key] = 'Это поле надо заполнить';
+            $errors[$key] = 'Заполните пожалуйста '. $dict[$key];
         }
     }
 
@@ -32,6 +32,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 
+    $path = '';
+    $tmp_name = '';
     if (isset($_FILES['lot-image']['name']) and !empty($_FILES['lot-image']['name'])) {
         $tmp_name = $_FILES['lot-image']['tmp_name'];
         $path = $_FILES['lot-image']['name'];
@@ -42,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $errors['lot-image'] = 'Загрузите картинку в формате JPG';
         } else {
             move_uploaded_file($tmp_name, 'img/' . $path);
-            $lot['image_url'] = $path;
+            $lot['lot-image'] = $path;
         }
 
     } else {
@@ -52,7 +54,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (count($errors)) {
         $page_content = include_template('add.php', ['lot' => $lot, 'errors' => $errors, 'categories' => $categories]);
     } else {
-        $page_content = include_template('view.php', ['gif' => $gif]);
+        move_uploaded_file($tmp_name, 'img/' . $path);
+        $lot['lot-image'] = $path;
+        $lot_id = $services->add_lot($lot);
+        if ($lot_id) {
+            header("Location: lot.php?id=" . $lot_id);
+        }
+        $page_content = include_template('lot.php', ['lot' => $lot]);
     }
 }
 else {
