@@ -3,7 +3,7 @@
 class Services {
 
     private $link;
-    private $is_auth;
+    public $is_auth;
 
     function __construct() {
 
@@ -19,7 +19,7 @@ class Services {
         }
     }
 
-    function get_data($sql)
+    private function get_data($sql)
     {
         $result = mysqli_query($this->link, $sql);
 
@@ -31,7 +31,7 @@ class Services {
         }
     }
 
-    function get_lots()
+    public function get_lots()
     {
         $sql = 'SELECT lt.id, lt.name, lt.price, lt.image_url AS url, ct.name AS category
                 FROM lots AS lt
@@ -43,7 +43,7 @@ class Services {
         return $this->get_data($sql);
     }
 
-    function get_lot($id)
+    public function get_lot($id)
     {
         $sql = 'SELECT lt.name, lt.description, lt.price, lt.image_url, ct.name as category
                 FROM lots AS lt
@@ -53,7 +53,7 @@ class Services {
         return $this->get_data($sql);
     }
 
-    function get_categories()
+    public function get_categories()
     {
         $sql = 'SELECT * FROM categories;';
 
